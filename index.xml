@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>BIOUBIU&#39;s Space</title>
-    <link>http://localhost:1313/</link>
+    <link>https://bioubiu.space/</link>
     <description>Recent content on BIOUBIU&#39;s Space</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>bioubiu@126.com (BIOUBIU)</managingEditor>
     <webMaster>bioubiu@126.com (BIOUBIU)</webMaster>
     <copyright>© 2025 BIOUBIU</copyright>
-    <lastBuildDate>Sun, 22 Jun 2025 21:33:15 +0800</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Jun 2025 21:33:15 +0800</lastBuildDate><atom:link href="https://bioubiu.space/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>HelloWorld</title>
-      <link>http://localhost:1313/posts/helloworld/</link>
+      <link>https://bioubiu.space/posts/helloworld/</link>
       <pubDate>Sun, 22 Jun 2025 21:33:15 +0800</pubDate>
       <author>bioubiu@126.com (BIOUBIU)</author>
-      <guid>http://localhost:1313/posts/helloworld/</guid>
+      <guid>https://bioubiu.space/posts/helloworld/</guid>
       <description></description>
       
     </item>
