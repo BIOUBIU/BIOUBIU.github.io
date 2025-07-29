@@ -113,7 +113,7 @@
     
     
     "mainEntityOfPage": "true",
-    "wordCount": "8"
+    "wordCount": "725"
   }]
   </script>
 
@@ -157,8 +157,24 @@
 
 
 
+  
+  <script defer src="/lib/packery/packery.pkgd.min.js" integrity=""></script>
+
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/shortcodes/gallery.min.9b4cb28f931ed922c26fb9b2510c2debb370f6a63305050c2af81740b2919883715e24efbbdf3a081496718ec751df3a72729d4d0bc71d6071297563a97ce1ee.js"
+    integrity="sha512-m0yyj5Me2SLCb7myUQwt67Nw9qYzBQUMKvgXQLKRmINxXiTvu986CBSWcY7HUd86cnKdTQvHHWBxKXVjqXzh7g=="></script>
 
 
+
+
+  
+  <script
+    defer
+    src="/lib/tw-elements/index.min.js"
+    integrity=""></script>
 
 
 
@@ -592,8 +608,6 @@
   
 
   
-    
-  
 
   
 
@@ -619,7 +633,7 @@
   <div class="flex flex-row flex-wrap items-center">
     
     
-      <time datetime="2025-07-28T20:38:46&#43;08:00">28 July 2025</time><span class="px-2 text-primary-500">&middot;</span><span>8 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">1 分钟</span>
+      <span>725 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
     
 
     
@@ -774,6 +788,155 @@
 
     <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
       
+        <div class="order-first lg:ml-auto px-0 lg:order-last ltr:lg:pl-8 rtl:lg:pr-8">
+          <div
+            class="toc ltr:pl-5 rtl:pr-5 print:hidden lg:sticky lg:top-[140px]
+            
+            ">
+            
+              <details
+  open
+  id="TOCView"
+  class="toc-right mt-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600 rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 hidden lg:block">
+  <summary
+    class="block py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="min-w-[220px] py-2 border-dotted ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#你在哪">📍你在哪？</a>
+      <ul>
+        <li><a href="#网站概况">🌐网站概况</a></li>
+        <li><a href="#一些别的">🛠️一些别的</a></li>
+      </ul>
+    </li>
+    <li><a href="#我是谁">😎我是谁？</a>
+      <ul>
+        <li><a href="#一些事实">✍️一些事实</a></li>
+        <li><a href="#时间线">🎯时间线</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+<details class="toc-inside mt-0 overflow-hidden rounded-lg ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 lg:hidden">
+  <summary
+    class="py-1 text-lg font-semibold cursor-pointer bg-neutral-100 text-neutral-800 ltr:-ml-5 ltr:pl-5 rtl:-mr-5 rtl:pr-5 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden">
+    目录
+  </summary>
+  <div
+    class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#你在哪">📍你在哪？</a>
+      <ul>
+        <li><a href="#网站概况">🌐网站概况</a></li>
+        <li><a href="#一些别的">🛠️一些别的</a></li>
+      </ul>
+    </li>
+    <li><a href="#我是谁">😎我是谁？</a>
+      <ul>
+        <li><a href="#一些事实">✍️一些事实</a></li>
+        <li><a href="#时间线">🎯时间线</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+
+<script>
+  (function () {
+    'use strict'
+
+    const SCROLL_OFFSET_RATIO = 0.33
+    const TOC_SELECTOR = '#TableOfContents'
+    const ANCHOR_SELECTOR = '.anchor'
+    const TOC_LINK_SELECTOR = 'a[href^="#"]'
+    const NESTED_LIST_SELECTOR = 'li ul'
+    const ACTIVE_CLASS = 'active'
+
+    function getActiveAnchorId(anchors, offsetRatio) {
+      const threshold = window.scrollY + window.innerHeight * offsetRatio
+      const tocLinks = [...document.querySelectorAll('#TableOfContents a[href^="#"]')]
+      const tocIds = new Set(tocLinks.map(link => link.getAttribute('href').substring(1)))
+
+      for (let i = anchors.length - 1; i >= 0; i--) {
+        const top = anchors[i].getBoundingClientRect().top + window.scrollY
+        if (top <= threshold && tocIds.has(anchors[i].id)) {
+          return anchors[i].id
+        }
+      }
+      return anchors.find(anchor => tocIds.has(anchor.id))?.id || ''
+    }
+
+    function updateTOC({ toc, anchors, links, scrollOffset, collapseInactive }) {
+      const activeId = getActiveAnchorId(anchors, scrollOffset)
+      if (!activeId) return
+
+      links.forEach(link => {
+        const isActive = link.getAttribute('href') === `#${activeId}`
+        link.classList.toggle(ACTIVE_CLASS, isActive)
+
+        if (collapseInactive) {
+          const ul = link.closest('li')?.querySelector('ul')
+          if (ul) ul.style.display = isActive ? '' : 'none'
+        }
+      })
+
+      if (collapseInactive) {
+        const activeLink = toc.querySelector(`a[href="#${CSS.escape(activeId)}"]`)
+        let el = activeLink
+        while (el && el !== toc) {
+          if (el.tagName === 'UL') el.style.display = ''
+          if (el.tagName === 'LI') el.querySelector('ul')?.style.setProperty('display', '')
+          el = el.parentElement
+        }
+      }
+    }
+
+    function initTOC() {
+      const toc = document.querySelector(TOC_SELECTOR)
+      if (!toc) return
+
+      const collapseInactive = false
+      const anchors = [...document.querySelectorAll(ANCHOR_SELECTOR)]
+      const links = [...toc.querySelectorAll(TOC_LINK_SELECTOR)]
+
+      if (collapseInactive) {
+        toc.querySelectorAll(NESTED_LIST_SELECTOR).forEach(ul => ul.style.display = 'none')
+      }
+
+      const config = {
+        toc,
+        anchors,
+        links,
+        scrollOffset: SCROLL_OFFSET_RATIO,
+        collapseInactive
+      }
+
+      window.addEventListener('scroll', () => updateTOC(config), { passive: true })
+      window.addEventListener('hashchange', () => updateTOC(config), { passive: true })
+
+      updateTOC(config)
+    }
+
+    document.readyState === 'loading'
+      ? document.addEventListener('DOMContentLoaded', initTOC)
+      : initTOC()
+  })()
+</script>
+
+
+            
+            
+          </div>
+        </div>
+      
 
 
       <div class="min-w-0 min-h-0 max-w-fit">
@@ -783,15 +946,634 @@
 
         <div class="article-content max-w-prose mb-20">
           
-<h1 class="relative group">施工中。。。。 
-    <div id="施工中" class="anchor"></div>
+<h1 class="relative group">👋嗨，我是Andy Young。很高兴认识你！ 
+    <div id="嗨我是andy-young很高兴认识你" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e6%96%bd%e5%b7%a5%e4%b8%ad" aria-label="锚点">#</a>
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e5%97%a8%e6%88%91%e6%98%afandy-young%e5%be%88%e9%ab%98%e5%85%b4%e8%ae%a4%e8%af%86%e4%bd%a0" aria-label="锚点">#</a>
     </span>        
     
 </h1>
+<div class="lead text-neutral-500 dark:text-neutral-400 !mb-9 text-xl">
+  苟日新，日日新，又日新。
+</div>
+
+
+<h2 class="relative group">📍你在哪？ 
+    <div id="你在哪" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e4%bd%a0%e5%9c%a8%e5%93%aa" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>欢迎来到BIOUBIU的空间！这是一个个人博客。</p>
+
+<h3 class="relative group">🌐网站概况 
+    <div id="网站概况" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e7%bd%91%e7%ab%99%e6%a6%82%e5%86%b5" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li>本网站通过Hugo框架搭建，使用Blowfish主题。</li>
+<li>本网站托管在Github Pages。<a
+  href="https://github.com/BIOUBIU/BIOUBIU.github.io"
+    target="_blank"
+  >
+
+  <span class="relative inline-block align-text-bottom icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+repo</a>
+</li>
+<li>为提高大陆访问速度，使用了Netlify的免费CDN。</li>
+</ul>
+
+<h3 class="relative group">🛠️一些别的 
+    <div id="一些别的" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e4%b8%80%e4%ba%9b%e5%88%ab%e7%9a%84" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li>评论系统使用<a
+  href="https://waline.js.org/"
+    target="_blank"
+  >Waline</a>
+，放在Netlify上，数据库是LeanCloud。</li>
+<li>底部全站计数使用不蒜子。</li>
+<li>每页的阅读量直接使用Waline的计数功能。</li>
+</ul>
+
+<h2 class="relative group">😎我是谁？ 
+    <div id="我是谁" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e6%88%91%e6%98%af%e8%b0%81" aria-label="锚点">#</a>
+    </span>        
+    
+</h2>
+<p>你好，我是Andy Young，BIOUBIU是我的网络ID。目前大一，就读于南开大学。我对计算机、电子技术等领域有着浓厚的兴趣。虽尚才疏学浅，但仍在不断学习，自我更新。我将会通过这个博客整理所学，变输入为输出，通过分享我的一些小小的学习心得，力求加深我对知识的理解，也期望给各位一起学习的同学们带来一点启发。“三人行，必有我师焉”，希望我能与各位共同学习，共同进步，如果有出现错误的地方，还请各位老师不吝赐教。</p>
+
+<h3 class="relative group">✍️一些事实 
+    <div id="一些事实" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e4%b8%80%e4%ba%9b%e4%ba%8b%e5%ae%9e" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li>于辽宁省沈阳市长大。高中毕业于辽宁省实验中学，目前就读于南开大学物理与光电信息技术工程试验班。</li>
+<li>轻中度二次元，臭看动漫的（）</li>
+<li>打游戏，但不是太多。</li>
+<li>业余无线电爱好者，但初中下了证一直在守听没有设台。</li>
+<li>对电子技术感兴趣。</li>
+<li>高中参加过一些如CASTIC、北斗杯等科创类竞赛并获国奖。</li>
+</ul>
+
+<h3 class="relative group">🎯时间线 
+    <div id="时间线" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700 !no-underline" href="#%e6%97%b6%e9%97%b4%e7%ba%bf" aria-label="锚点">#</a>
+    </span>        
+    
+</h3>
+<ol class="border-l-2 border-primary-500 dark:border-primary-300 list-none">
+
+
+
+
+
+<li>
+  <div class="flex flex-start">
+    <div
+      class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg>
+  </span>
+
+
+    </div>
+    <div class="block p-6 rounded-lg shadow-2xl min-w-full ml-6 mb-10 break-words">
+      <div class="flex justify-between">
+        
+          <h2 class="mt-0">准备辽宁省青创赛</h2>
+        
+        
+          <h3 class="">
+            <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    2022.12
+  </span>
+</span>
+
+          </h3>
+        
+      </div>
+      
+      <div class="mb-6">
+开始立项，制作项目，准备38thLNASTIC。
+</div>
+    </div>
+  </div>
+</li>
+
+
+
+
+
+
+<li>
+  <div class="flex flex-start">
+    <div
+      class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg>
+  </span>
+
+
+    </div>
+    <div class="block p-6 rounded-lg shadow-2xl min-w-full ml-6 mb-10 break-words">
+      <div class="flex justify-between">
+        
+          <h2 class="mt-0">38届辽宁省青少年科技创新大赛一等奖，入围国赛</h2>
+        
+        
+          <h3 class="">
+            <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    2023.4
+  </span>
+</span>
+
+          </h3>
+        
+      </div>
+      
+      <div class="mb-6">
+赴辽阳市参加第38届辽宁省青少年科技创新大赛，获省一等奖，并成功入围37th CASTIC辽宁省代表队。
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+
+<div id="carousel-99976cdacc57a148cd8a4b374d4c547f" class="relative" data-twe-carousel-init data-twe-ride="carousel">
+  <div
+    class="absolute right-0 bottom-0 left-0 z-[2] mx-[15%] mb-10 flex list-none justify-center p-0"
+    data-twe-carousel-indicators>
+    
+    
+      <button
+        type="button"
+        data-twe-target="#carousel-99976cdacc57a148cd8a4b374d4c547f"
+        data-twe-slide-to="0"
+        data-twe-carousel-active aria-current="true"
+        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-neutral bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+        aria-label="Slide 0"></button>
+
+      
+    
+
+  </div>
+  <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+    
+    
+      <div
+        class="relative float-left -mr-[100%]  w-full transition-transform duration-[2000ms] ease-in-out motion-reduce:transition-none"
+        data-twe-carousel-item
+        data-twe-carousel-active>
+        <div class="ratio-16-9 single_hero_background">
+          <img
+            src="/mountains-1899264_960_720_14245824459852564187.jpg"
+            class="block absolute top-0 object-cover w-full h-full nozoom"
+            alt="carousel image 0">
+        </div>
+      </div>
+
+      
+    
+
+  </div>
+  <button
+    class="absolute top-0 bottom-0 left-0 z-[2] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+    type="button"
+    data-twe-target="#carousel-99976cdacc57a148cd8a4b374d4c547f"
+    data-twe-slide="prev">
+    <span class="inline-block h-8 w-8">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="4.5"
+        stroke="currentColor"
+        class="h-6 w-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </span>
+    <span
+      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+      >Previous</span
+    >
+  </button>
+  <button
+    class="absolute top-0 bottom-0 right-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+    type="button"
+    data-twe-target="#carousel-99976cdacc57a148cd8a4b374d4c547f"
+    data-twe-slide="next">
+    <span class="inline-block h-8 w-8">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="4.5"
+        stroke="currentColor"
+        class="h-6 w-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </span>
+    <span
+      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+      >Nextsads</span
+    >
+  </button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+
+
+<div id="carousel-4959d576e9b7c87a35f7bdca3adaded7" class="relative" data-twe-carousel-init data-twe-ride="carousel">
+  <div
+    class="absolute right-0 bottom-0 left-0 z-[2] mx-[15%] mb-10 flex list-none justify-center p-0"
+    data-twe-carousel-indicators>
+    
+    
+      <button
+        type="button"
+        data-twe-target="#carousel-4959d576e9b7c87a35f7bdca3adaded7"
+        data-twe-slide-to="0"
+        data-twe-carousel-active aria-current="true"
+        class="mx-[3px] box-content h-[3px] w-[30px] flex-initial cursor-pointer border-0 border-y-[10px] border-solid border-transparent bg-neutral bg-clip-padding p-0 -indent-[999px] opacity-50 transition-opacity duration-[600ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] motion-reduce:transition-none"
+        aria-label="Slide 0"></button>
+
+      
+    
+
+  </div>
+  <div class="relative w-full overflow-hidden after:clear-both after:block after:content-['']">
+    
+    
+      <div
+        class="relative float-left -mr-[100%]  w-full transition-transform duration-[1000ms] ease-in-out motion-reduce:transition-none"
+        data-twe-carousel-item
+        data-twe-carousel-active>
+        <div class="ratio-16-9 single_hero_background">
+          <img
+            src="/about/gallery/ln01.png"
+            class="block absolute top-0 object-cover w-full h-full nozoom"
+            alt="carousel image 0">
+        </div>
+      </div>
+
+      
+    
+
+  </div>
+  <button
+    class="absolute top-0 bottom-0 left-0 z-[2] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+    type="button"
+    data-twe-target="#carousel-4959d576e9b7c87a35f7bdca3adaded7"
+    data-twe-slide="prev">
+    <span class="inline-block h-8 w-8">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="4.5"
+        stroke="currentColor"
+        class="h-6 w-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </span>
+    <span
+      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+      >Previous</span
+    >
+  </button>
+  <button
+    class="absolute top-0 bottom-0 right-0 z-[1] flex w-[15%] items-center justify-center border-0 bg-none p-0 text-center text-white opacity-50 transition-opacity duration-150 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:text-white hover:no-underline hover:opacity-90 hover:outline-none focus:text-white focus:no-underline focus:opacity-90 focus:outline-none motion-reduce:transition-none"
+    type="button"
+    data-twe-target="#carousel-4959d576e9b7c87a35f7bdca3adaded7"
+    data-twe-slide="next">
+    <span class="inline-block h-8 w-8">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="4.5"
+        stroke="currentColor"
+        class="h-6 w-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </span>
+    <span
+      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+      >Nextsads</span
+    >
+  </button>
+</div>
+
+
+</div>
+    </div>
+  </div>
+</li>
+
+
+
+
+
+
+<li>
+  <div class="flex flex-start">
+    <div
+      class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+<path fill="currentColor"  d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
+  </span>
+
+
+    </div>
+    <div class="block p-6 rounded-lg shadow-2xl min-w-full ml-6 mb-10 break-words">
+      <div class="flex justify-between">
+        
+          <h2 class="mt-0">Another Awesome Header</h2>
+        
+        
+          <h3 class="">
+            <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    date - present
+  </span>
+</span>
+
+          </h3>
+        
+      </div>
+      
+        <h4 class="mt-0">
+          Awesome Subheader
+        </h4>
+      
+      <div class="mb-6">
+With html code
+
+<ul>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+</div>
+    </div>
+  </div>
+</li>
+
+
+
+
+
+
+<li>
+  <div class="flex flex-start">
+    <div
+      class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg>
+  </span>
+
+
+    </div>
+    <div class="block p-6 rounded-lg shadow-2xl min-w-full ml-6 mb-10 break-words">
+      <div class="flex justify-between">
+        
+          <h2 class="mt-0">Shortcodes</h2>
+        
+        
+          <h3 class="">
+            <span class="flex cursor-pointer">
+  <span
+    class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    AWESOME
+  </span>
+</span>
+
+          </h3>
+        
+      </div>
+      
+      <div class="mb-6">
+With other shortcodes
+<div id="gallery-260f5f92394f39277f708ab189268dd5" class="gallery">
+  
+  
+
+</div>
+
+</div>
+    </div>
+  </div>
+</li>
+
+
+
+
+
+
+<li>
+  <div class="flex flex-start">
+    <div
+      class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
+      
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+<path fill="currentColor"  d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
+  </span>
+
+
+    </div>
+    <div class="block p-6 rounded-lg shadow-2xl min-w-full ml-6 mb-10 break-words">
+      <div class="flex justify-between">
+        
+          <h2 class="mt-0">Another Awesome Header</h2>
+        
+        
+      </div>
+      
+      <div class="mb-6">
+<div class="github-card-wrapper"><a id="github-3ca922edd929b7d429fbf5fa97ed9556" target="_blank" href="https://github.com/nunocoracao/blowfish" class="cursor-pointer">
+      <div
+        class="w-full md:w-auto p-0 m-0 border border-neutral-200 dark:border-neutral-700 border rounded-md shadow-2xl"><div class="w-full nozoom">
+            <img
+              src="https://opengraph.githubassets.com/0/nunocoracao/blowfish"
+              alt="GitHub Repository Thumbnail"
+              class="nozoom mt-0 mb-0 w-full h-full object-cover">
+          </div><div class="w-full md:w-auto pt-3 p-5">
+          <div class="flex items-center">
+            <span class="text-2xl text-neutral-800 dark:text-neutral margin-right-[10px]">
+              
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+
+            </span>
+            <div
+              id="github-3ca922edd929b7d429fbf5fa97ed9556-full_name"
+              class="m-0 font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral">
+              nunocoracao/blowfish
+            </div>
+          </div>
+
+          <p id="github-3ca922edd929b7d429fbf5fa97ed9556-description" class="m-0 mt-2 text-md text-neutral-800 dark:text-neutral">
+            Personal Website &amp; Blog Theme for Hugo
+          </p>
+
+          <div class="m-0 mt-2 flex items-center">
+            <span
+              class="mr-1 inline-block h-3 w-3 rounded-full"
+              style="background-color: #e34c26"></span>
+            <div class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
+              HTML
+            </div>
+
+            <span class="text-md mr-1 text-neutral-800 dark:text-neutral">
+              
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg>
+  </span>
+
+
+            </span>
+            <div id="github-3ca922edd929b7d429fbf5fa97ed9556-stargazers" class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
+              2161
+            </div>
+
+            <span class="text-md mr-1 text-neutral-800 dark:text-neutral">
+              
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M80 104c13.3 0 24-10.7 24-24s-10.7-24-24-24S56 66.7 56 80s10.7 24 24 24zm80-24c0 32.8-19.7 61-48 73.3V192c0 17.7 14.3 32 32 32H304c17.7 0 32-14.3 32-32V153.3C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V192c0 53-43 96-96 96H256v70.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V288H144c-53 0-96-43-96-96V153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm208 24c13.3 0 24-10.7 24-24s-10.7-24-24-24s-24 10.7-24 24s10.7 24 24 24zM248 432c0-13.3-10.7-24-24-24s-24 10.7-24 24s10.7 24 24 24s24-10.7 24-24z"/></svg>
+  </span>
+
+
+            </span>
+            <div id="github-3ca922edd929b7d429fbf5fa97ed9556-forks" class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
+              571
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <script
+        type="text/javascript"
+        src="/js/fetch-repo.min.6fa205e5fc33470feaf8cf69cbed6460022e3c17e86caf270846f7660fbd61d5012ec56f9c8dd8accb81c36c79f8ef40f19d6fd69353d8a62327c3e9bc615f27.js"
+        integrity="sha512-b6IF5fwzRw/q&#43;M9py&#43;1kYAIuPBfobK8nCEb3Zg&#43;9YdUBLsVvnI3YrMuBw2x5&#43;O9A8Z1v1pNT2KYjJ8PpvGFfJw=="
+        data-repo-url="https://api.github.com/repos/nunocoracao/blowfish"
+        data-repo-id="github-3ca922edd929b7d429fbf5fa97ed9556"></script>
+    </a></div>
+
+</div>
+    </div>
+  </div>
+</li>
+
+
+</ol>
+
 
           
           
@@ -840,6 +1622,121 @@
   
 
 
+      
+        
+          <div class="pt-3">
+            <hr class="border-dotted border-neutral-300 dark:border-neutral-600">
+            <div class="pt-3">
+              <head>
+  
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/@waline/client@v3/dist/waline.css"
+  />
+  
+</head>
+<body>
+  
+  <div id="article-info">
+  
+  本页阅读量: <span class="waline-pageview-count" />
+  
+  </div>
+  <div id="waline"></div>
+  <script type="module">
+    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+    init({
+      el: '#waline',
+      serverURL: 'https://bioubiucomments.netlify.app/.netlify/functions/comment',
+      emoji: [ 
+        '//unpkg.com/@waline/emojis@1.2.0/bmoji',
+        '//unpkg.com/@waline/emojis@1.2.0/tieba',
+        '//unpkg.com/@waline/emojis@1.2.0/qq',
+        '//unpkg.com/@waline/emojis@1.2.0/alus',
+        '//unpkg.com/@waline/emojis@1.1.0/bilibili',
+        'https://cdn.jsdelivr.net/gh/norevi/waline-blobcatemojis@1.0/blobs',
+      ],
+      reaction: true,
+      pageview: true,
+    });
+  </script>
+  
+  <style>
+
+:root {
+   
+  --waline-font-size: 16px;
+
+   
+  --waline-white: #000;
+  --waline-light-grey: #999;
+  --waline-dark-grey: #666;
+
+   
+  --waline-theme-color: #3b82f6;
+  --waline-active-color: #2ecc71;
+
+   
+  --waline-color: #c5c5c5;
+  --waline-bg-color: #1e293b;
+  --waline-bg-color-light: #1e293b;
+  --waline-bg-color-hover: #2ecc71;
+  --waline-border-color: #666;
+  --waline-disable-bg-color: rgba(68,68,68,0.8);
+  --waline-disable-color: #;
+  --waline-code-bg-color: #282c34;
+
+   
+  --waline-bq-color: #f0f0f0;
+
+   
+  --waline-avatar-size: 3.25rem;
+  --waline-m-avatar-size: calc(var(--waline-avatar-size) * 9 / 13);
+
+   
+  --waline-badge-color: #3498db;
+  --waline-badge-font-size: 0.775em;
+
+   
+  --waline-info-bg-color: #f8f8f8;
+  --waline-info-color: #999;
+  --waline-info-font-size: 0.625em;
+
+   
+  --waline-border: 1px solid var(--waline-border-color);
+  --waline-avatar-radius: 50%;
+  --waline-box-shadow: none;
+}
+
+ 
+darkmode-selector {
+   
+  --waline-white: #ffffff;
+  --waline-light-grey: #666;
+  --waline-dark-grey: #999;
+
+   
+  --waline-color: #888;
+  --waline-bg-color: #1e1e1e;
+  --waline-bg-color-light: #272727;
+  --waline-border-color: #333;
+  --waline-disable-bg-color: #444;
+  --waline-disable-color: #272727;
+
+   
+  --waline-bq-color: #272727;
+
+   
+  --waline-info-bg-color: #272727;
+  --waline-info-color: #666;
+}
+    </style>
+    
+</body>
+            </div>
+          </div>
+        
       
     </footer>
   </article>
