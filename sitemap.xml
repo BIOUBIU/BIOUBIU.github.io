@@ -3,6 +3,12 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
+    <loc>https://bioubiu.space/links/</loc>
+    <lastmod>2026-01-21T08:00:00+08:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://bioubiu.space/about/</loc>
     <lastmod>2025-07-28T20:38:46+08:00</lastmod>
     <changefreq>daily</changefreq>
@@ -10,7 +16,7 @@
   </url>
   <url>
     <loc>https://bioubiu.space/</loc>
-    <lastmod>2025-07-28T20:38:46+08:00</lastmod>
+    <lastmod>2026-01-21T08:00:00+08:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
